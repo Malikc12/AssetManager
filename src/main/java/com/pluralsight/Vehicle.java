@@ -1,6 +1,8 @@
 package com.pluralsight;
 
-public class Vehicle extends Asset{
+import java.time.LocalDate;
+
+public class Vehicle extends Asset {
     private String makeModel;
     private int odemeter;
     private int year;
@@ -42,12 +44,38 @@ public class Vehicle extends Asset{
 // 4-6 years old - 6% reduced value of cost per year
 // 7-10 years old - 8% reduced value of cost per year
 // over 10 years old - $1000.00
+
 // MINUS reduce final value by 25% if over 100,000 miles
 // unless makeModel contains word Honda or Toyota
     @Override
     public Double getValue() {
+        double currentCost = 0.00;
+        int age = LocalDate.now().getYear() - year;
 
+        String workingModel = ""
 
-        return originalcost;
+        if (age <= 3) {
+            currentCost = getOriginalCost() * (1 - 0.03 * age);
+        }
+
+        else if (age >= 4 && age <= 6){
+            currentCost = getOriginalCost() * (1 - 0.06 * age);
+
+        }
+        else if (age >= 7 && age <= 10){
+            currentCost = getOriginalCost() * (1 - 0.08 * age);
+        }
+        else if (age >= 10){
+            currentCost = getOriginalCost() - 1000.00;
+        }
+
+        // MINUS reduce final value by 25% if over 100,000 miles
+// unless makeModel contains word Honda or Toyota
+        if (miles >= 100000 && ){
+            va
+        }
+        // if miles is ove 100 hundred thousand subract 25% from final value
+        // Unless makeModel is a Honda or Toyota
     }
+
 }
